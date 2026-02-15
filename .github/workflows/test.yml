@@ -1,0 +1,33 @@
+name: Test Recursive Functions
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Display Python version
+      run: python --version
+    
+    - name: Run tests
+      run: python test_functions.py
+    
+    - name: Quick function checks
+      run: |
+        python -c "from mult_recur import mult_recur; print('mult_recur(3, 4) =', mult_recur(3, 4))"
+        python -c "from power_recur import power_recur; print('power_recur(2, 3) =', power_recur(2, 3))"
+        python -c "from power_recur import power_recur; print('power_recur(2, -2) =', power_recur(2, -2))"
+        python -c "from fact_recur import fact_recur; print('fact_recur(5) =', fact_recur(5))"
