@@ -14,10 +14,10 @@ def fact_recur(n):
     elif n < 0:  #  Factorial undefined for negative numbers
         raise ValueError("Factorial is not defined for negative numbers")
     else:
-        return mult_recur(n, fact(n-1))
+        return mult_recur(n, fact_recur(n-1))
 
-#  result = fact(0)
-#  result = fact(1)
-result = fact(4)
-#  result = fact(-1)
+#  result = fact_recur(0)
+#  result = fact_recur(1)
+result = fact_recur(4)
+#  result = fact_recur(-1)
 print(result)
