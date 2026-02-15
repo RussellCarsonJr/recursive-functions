@@ -6,7 +6,7 @@ def mult_recur(a, b):
     else:
         return a + mult_recur(a, b-1)
 
-def fact(n):
+def fact_recur(n):
     if n == 0:  #  0! = 1 (mathematical definition)
         return 1
     elif n == 1:
