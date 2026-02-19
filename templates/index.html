@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<html>
+<head>
+    <title>Multiplication Flash Cards</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Multiplication Flash Cards</h1>
+    
+    <div class="card-container">
+        <span class="card" id="card1">?</span>
+        <span class="multiply-symbol">×</span>
+        <span class="card" id="card2">?</span>
+    </div>
+    
+    <div class="answer" id="answer">?</div>
+    
+    <div>
+        <button onclick="showAnswer()">Show Answer</button>
+        <button onclick="newProblem()">New Problem</button>
+    </div>
+
+    <script>
+        let card1, card2, answer;
+
+        async function newProblem() {
+            const response = await fetch('/new_problem');
+            const data = await response.json();
+            
+            document.getElementById('card1').textContent = data.card1;
+            document.getElementById('card2').textContent = data.card2;
+            document.getElementById('answer').textContent = '?';
+            answer = data.answer;
+        }
+
+        function showAnswer() {
+            document.getElementById('answer').textContent = answer;
+        }
+
+        // Load first problem when page loads
+        newProblem();
+    </script>
+</body>
+</html>
